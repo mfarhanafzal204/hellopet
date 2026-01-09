@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Transition Test - Hello Pet</title>
+    
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome 6 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .test-section {
+            padding: 2rem 0;
+            margin: 1rem 0;
+            border-radius: 15px;
+        }
+        
+        .test-card {
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        
+        .theme-test-controls {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-color);
+        }
+        
+        .auto-toggle {
+            animation: autoToggle 3s infinite;
+        }
+        
+        @keyframes autoToggle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Test Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top glassmorphism-nav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/brand logo.PNG" alt="Hello Pet Logo" class="navbar-logo-large">
+            </a>
+            
+            <div class="navbar-nav ms-auto">
+                <button class="theme-toggle-btn" id="themeToggle" title="Toggle Dark/Light Mode">
+                    <div class="theme-toggle-track">
+                        <div class="theme-toggle-thumb">
+                            <i class="fas fa-sun sun-icon"></i>
+                            <i class="fas fa-moon moon-icon"></i>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Theme Test Controls -->
+    <div class="theme-test-controls">
+        <h6 class="mb-3">Theme Test Controls</h6>
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary btn-sm" onclick="testThemeToggle()">
+                <i class="fas fa-exchange-alt me-1"></i>Toggle
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="setLightTheme()">
+                <i class="fas fa-sun me-1"></i>Light
+            </button>
+            <button class="btn btn-dark btn-sm" onclick="setDarkTheme()">
+                <i class="fas fa-moon me-1"></i>Dark
+            </button>
+            <button class="btn btn-outline-primary btn-sm" onclick="startAutoToggle()" id="autoBtn">
+                <i class="fas fa-play me-1"></i>Auto Test
+            </button>
+        </div>
+        <div class="mt-3">
+            <small class="text-muted">
+                <div>Current: <span id="currentThemeDisplay">Light</span></div>
+                <div>Transitions: <span id="transitionStatus">Ready</span></div>
+            </small>
+        </div>
+    </div>
+
+    <!-- Test Content -->
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="display-4 mb-3">🎨 Ultra-Smooth Theme Transition Test</h1>
+                <p class="lead">Testing all page elements for smooth theme transitions</p>
+            </div>
+        </div>
+
+        <!-- Hero Section Test -->
+        <section class="test-section hero-content">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="hero-title">Hero Section Test</h2>
+                    <p class="hero-subtitle">Testing hero content theme transitions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section Test -->
+        <section class="test-section benefits-section">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h2 class="section-title">Benefits Cards Test</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="benefit-card glass-card test-card">
+                        <div class="benefit-icon mx-auto mb-3">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h5>Benefit Card 1</h5>
+                        <p>Testing benefit card theme transitions with smooth animations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="benefit-card glass-card test-card">
+                        <div class="benefit-icon mx-auto mb-3">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h5>Benefit Card 2</h5>
+                        <p>Testing benefit card theme transitions with smooth animations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="benefit-card glass-card test-card">
+                        <div class="benefit-icon mx-auto mb-3">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5>Benefit Card 3</h5>
+                        <p>Testing benefit card theme transitions with smooth animations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Elements Test -->
+        <section class="test-section">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="form-wrapper glass-card p-4">
+                        <h3 class="text-center mb-4">Form Elements Test</h3>
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Text Input</label>
+                                <input type="text" class="form-control" placeholder="Test input">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Select Dropdown</label>
+                                <select class="form-select">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Textarea</label>
+                                <textarea class="form-control" rows="3" placeholder="Test textarea"></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary w-100">Test Button</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Cards Test -->
+        <section class="test-section">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="contact-card glass-card text-center p-4">
+                        <div class="contact-icon mb-3">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h5>Contact Card 1</h5>
+                        <p>Testing contact card transitions</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-card glass-card text-center p-4">
+                        <div class="contact-icon mb-3">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h5>Contact Card 2</h5>
+                        <p>Testing contact card transitions</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-card glass-card text-center p-4">
+                        <div class="contact-icon mb-3">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h5>Contact Card 3</h5>
+                        <p>Testing contact card transitions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accordion Test -->
+        <section class="test-section">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h3 class="text-center mb-4">Accordion Test</h3>
+                    <div class="accordion" id="testAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#test1">
+                                    Test Accordion Item 1
+                                </button>
+                            </h2>
+                            <div id="test1" class="accordion-collapse collapse show" data-bs-parent="#testAccordion">
+                                <div class="accordion-body">
+                                    Testing accordion theme transitions with smooth animations.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#test2">
+                                    Test Accordion Item 2
+                                </button>
+                            </h2>
+                            <div id="test2" class="accordion-collapse collapse" data-bs-parent="#testAccordion">
+                                <div class="accordion-body">
+                                    Testing accordion theme transitions with smooth animations.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Test Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h4 class="footer-brand-name">Footer Test</h4>
+                    <p class="footer-description">Testing footer theme transitions</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Theme Manager -->
+    <script src="js/theme-manager.js"></script>
+    
+    <script>
+        let autoToggleInterval;
+        let isAutoToggling = false;
+        
+        function testThemeToggle() {
+            if (window.themeManager) {
+                updateTransitionStatus('Ultra-Smooth Toggling...');
+                window.themeManager.toggleTheme();
+                setTimeout(() => {
+                    updateTransitionStatus('Complete - Buttery Smooth!');
+                    updateCurrentTheme();
+                }, 800);
+            }
+        }
+        
+        function setLightTheme() {
+            if (window.themeManager) {
+                updateTransitionStatus('Ultra-Smooth Light...');
+                window.themeManager.setTheme('light');
+                setTimeout(() => {
+                    updateTransitionStatus('Light Mode - Smooth!');
+                    updateCurrentTheme();
+                }, 800);
+            }
+        }
+        
+        function setDarkTheme() {
+            if (window.themeManager) {
+                updateTransitionStatus('Ultra-Smooth Dark...');
+                window.themeManager.setTheme('dark');
+                setTimeout(() => {
+                    updateTransitionStatus('Dark Mode - Smooth!');
+                    updateCurrentTheme();
+                }, 800);
+            }
+        }
+        
+        function startAutoToggle() {
+            const autoBtn = document.getElementById('autoBtn');
+            
+            if (isAutoToggling) {
+                // Stop auto toggle
+                clearInterval(autoToggleInterval);
+                isAutoToggling = false;
+                autoBtn.innerHTML = '<i class="fas fa-play me-1"></i>Auto Test';
+                autoBtn.classList.remove('auto-toggle');
+                updateTransitionStatus('Stopped');
+            } else {
+                // Start auto toggle
+                isAutoToggling = true;
+                autoBtn.innerHTML = '<i class="fas fa-stop me-1"></i>Stop Auto';
+                autoBtn.classList.add('auto-toggle');
+                updateTransitionStatus('Auto Testing...');
+                
+                autoToggleInterval = setInterval(() => {
+                    testThemeToggle();
+                }, 3000); // Increased to 3 seconds for better visibility of smooth transitions
+            }
+        }
+        
+        function updateCurrentTheme() {
+            const display = document.getElementById('currentThemeDisplay');
+            if (window.themeManager && display) {
+                const theme = window.themeManager.getCurrentTheme();
+                display.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+            }
+        }
+        
+        function updateTransitionStatus(status) {
+            const statusEl = document.getElementById('transitionStatus');
+            if (statusEl) {
+                statusEl.textContent = status;
+                setTimeout(() => {
+                    if (statusEl.textContent === status) {
+                        statusEl.textContent = 'Ready';
+                    }
+                }, 1000);
+            }
+        }
+        
+        // Listen for theme changes
+        window.addEventListener('themeChanged', (e) => {
+            console.log('🎨 Theme changed to:', e.detail.theme);
+            updateCurrentTheme();
+        });
+        
+        // Initialize
+        setTimeout(() => {
+            updateCurrentTheme();
+            console.log('🧪 Theme Transition Test Ready!');
+            console.log('💡 Use the controls on the right to test theme transitions');
+            console.log('🎯 Watch for smooth 500ms transitions on all elements');
+        }, 500);
+    </script>
+</body>
+</html>

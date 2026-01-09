@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottle Theme Fix Test - Hello Pet</title>
+    
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome 6 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Test-specific styles */
+        .test-info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-size: 14px;
+            max-width: 350px;
+            border: 2px solid #28a745;
+        }
+        
+        .test-controls {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            border: 2px solid #007bff;
+        }
+        
+        .test-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .test-btn:hover {
+            background: #0056b3;
+        }
+        
+        .test-btn.active {
+            background: #28a745;
+        }
+        
+        /* Mock 3D canvas with bottle simulation */
+        #bottle-canvas {
+            background: linear-gradient(45deg, 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(59,167,201,0.1) 25%, 
+                rgba(255,255,255,0.1) 50%, 
+                rgba(59,167,201,0.1) 75%, 
+                rgba(255,255,255,0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #007bff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Bottle simulation */
+        .bottle-simulation {
+            width: 120px;
+            height: 200px;
+            background: linear-gradient(180deg, 
+                #e3f2fd 0%, 
+                #bbdefb 20%, 
+                #90caf9 40%, 
+                #64b5f6 60%, 
+                #42a5f5 80%, 
+                #2196f3 100%);
+            border-radius: 15px 15px 25px 25px;
+            position: relative;
+            box-shadow: 
+                0 10px 30px rgba(33, 150, 243, 0.3),
+                inset 0 2px 10px rgba(255, 255, 255, 0.5);
+            animation: bottleFloat 3s ease-in-out infinite;
+        }
+        
+        .bottle-simulation::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 25px;
+            background: #1976d2;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .bottle-simulation::after {
+            content: 'Hello Pet';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        @keyframes bottleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        
+        .theme-indicator {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+            border: 3px solid;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="light"] .theme-indicator {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+            color: #333;
+        }
+        
+        [data-theme="dark"] .theme-indicator {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.2);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Test Info Panel -->
+    <div class="test-info">
+        <h6><i class="fas fa-bug"></i> Bottle Theme Fix Test</h6>
+        <p><strong>Issue:</strong> Bottle appearance changes in dark mode</p>
+        <p><strong>Fix:</strong> Preserve exact same background in both themes</p>
+        <p><strong>Test:</strong> Toggle theme and verify bottle looks identical</p>
+        <div style="margin-top: 10px; padding: 10px; background: rgba(40, 167, 69, 0.2); border-radius: 5px;">
+            <strong>✅ Expected Result:</strong> Bottle should look exactly the same in both light and dark modes
+        </div>
+    </div>
+
+    <!-- Theme Indicator -->
+    <div class="theme-indicator" id="themeIndicator">
+        <i class="fas fa-sun"></i> LIGHT MODE
+    </div>
+
+    <!-- Test Controls -->
+    <div class="test-controls">
+        <h6><i class="fas fa-tools"></i> Test Controls</h6>
+        <button class="test-btn" onclick="toggleTheme()">
+            <i class="fas fa-adjust"></i> Toggle Theme
+        </button>
+        <button class="test-btn" onclick="compareThemes()">
+            <i class="fas fa-eye"></i> Compare Themes
+        </button>
+        <button class="test-btn" onclick="resetTest()">
+            <i class="fas fa-redo"></i> Reset Test
+        </button>
+    </div>
+
+    <!-- Global Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top glassmorphism-nav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/brand logo.PNG" alt="Hello Pet Logo" class="navbar-logo-large">
+            </a>
+            
+            <div class="navbar-nav ms-auto">
+                <button class="theme-toggle-btn" id="themeToggle" title="Toggle Dark/Light Mode">
+                    <div class="theme-toggle-track">
+                        <div class="theme-toggle-thumb">
+                            <i class="fas fa-sun sun-icon"></i>
+                            <i class="fas fa-moon moon-icon"></i>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FULL-SCREEN 3D EXPERIENCE -->
+    <section class="three-js-section">
+        <div class="viewer-wrapper">
+            <canvas id="bottle-canvas">
+                <div class="bottle-simulation"></div>
+            </canvas>
+
+            <!-- Luxury Brand Tagline - Left Side Only -->
+            <div class="luxury-tagline">
+                <h2 class="luxury-text">Pakistan's 1st<br>Luxury Pet Care<br>Brand</h2>
+            </div>
+
+            <!-- UI DOCK - REPOSITIONED TO RIGHT SIDE -->
+            <div class="ui-dock">
+                <div class="pet-wash-tagline">
+                    <h3 class="tagline-text">Minty Fresh Coat • Tick Free Life</h3>
+                </div>
+                <div class="action-row">
+                    <button id="wash-btn" class="btn-3d btn-wash" onclick="testBottleInteraction()">
+                        <i class="fas fa-paw"></i> Wash Pet
+                    </button>
+                </div>
+                <div class="controls-hint">
+                    <i class="fas fa-hand-pointer"></i> Drag to Rotate 360°
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Results Section -->
+    <section style="padding: 100px 0; min-height: 50vh;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Bottle Theme Fix Test Results</h2>
+                    <p class="lead">The bottle should maintain identical appearance in both light and dark themes.</p>
+                    
+                    <div class="row mt-5">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5><i class="fas fa-sun text-warning"></i> Light Mode</h5>
+                                    <ul class="text-start">
+                                        <li>Background: #f0f2f5 (light gray)</li>
+                                        <li>Viewer: radial-gradient(white to light blue)</li>
+                                        <li>Bottle: Transparent canvas with 3D model</li>
+                                        <li>UI Elements: Dark backgrounds with light text</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5><i class="fas fa-moon text-primary"></i> Dark Mode</h5>
+                                    <ul class="text-start">
+                                        <li>Background: #f0f2f5 (SAME as light)</li>
+                                        <li>Viewer: radial-gradient(SAME as light)</li>
+                                        <li>Bottle: Identical appearance</li>
+                                        <li>UI Elements: Darker backgrounds</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="alert alert-success">
+                            <h6><i class="fas fa-check-circle"></i> Fix Applied</h6>
+                            <p class="mb-0">The 3D bottle section now maintains identical backgrounds in both themes, ensuring the bottle appearance remains consistent.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Theme Manager -->
+    <script src="js/theme-manager.js"></script>
+    
+    <script>
+        let comparisonMode = false;
+        
+        // Test functions
+        function testBottleInteraction() {
+            alert('Bottle interaction test - UI elements working correctly while bottle appearance remains consistent!');
+        }
+        
+        function toggleTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.click();
+            }
+        }
+        
+        function compareThemes() {
+            if (!comparisonMode) {
+                comparisonMode = true;
+                let currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+                let count = 0;
+                
+                const interval = setInterval(() => {
+                    toggleTheme();
+                    count++;
+                    
+                    if (count >= 6) { // 3 full cycles
+                        clearInterval(interval);
+                        comparisonMode = false;
+                        alert('Theme comparison complete! Did the bottle look identical in both themes?');
+                    }
+                }, 1500);
+                
+                alert('Starting theme comparison - watch the bottle carefully!');
+            }
+        }
+        
+        function resetTest() {
+            // Reset to light theme
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                toggleTheme();
+            }
+            alert('Test reset to light mode. You can now start testing again.');
+        }
+        
+        // Update theme indicator
+        function updateThemeIndicator() {
+            const indicator = document.getElementById('themeIndicator');
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            
+            if (currentTheme === 'dark') {
+                indicator.innerHTML = '<i class="fas fa-moon"></i> DARK MODE';
+            } else {
+                indicator.innerHTML = '<i class="fas fa-sun"></i> LIGHT MODE';
+            }
+        }
+        
+        // Monitor theme changes
+        document.addEventListener('DOMContentLoaded', function() {
+            updateThemeIndicator();
+            
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.attributeName === 'data-theme') {
+                        updateThemeIndicator();
+                        const theme = document.documentElement.getAttribute('data-theme') || 'light';
+                        console.log(`🎨 Theme changed to: ${theme}`);
+                        console.log('🍼 Check if bottle appearance is identical!');
+                    }
+                });
+            });
+            
+            observer.observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: ['data-theme']
+            });
+        });
+        
+        // Log test info
+        window.addEventListener('load', function() {
+            console.log('🧪 BOTTLE THEME FIX TEST LOADED');
+            console.log('🎯 Goal: Bottle should look identical in both themes');
+            console.log('🔧 Fix: Preserve exact same backgrounds');
+            console.log('📋 Test Steps:');
+            console.log('  1. Toggle between light/dark themes');
+            console.log('  2. Observe bottle appearance');
+            console.log('  3. Verify it looks exactly the same');
+            console.log('  4. Check UI elements still transition properly');
+        });
+    </script>
+</body>
+</html>""

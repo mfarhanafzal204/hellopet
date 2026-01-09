@@ -1,0 +1,400 @@
+/* THREE.JS SECTION STYLES - MOBILE OPTIMIZED */
+body {
+    background-color: #f0f2f5;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    user-select: none;
+    /* Enable smooth scrolling on all devices */
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+.three-js-section {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    margin-top: 90px;
+    z-index: 5;
+    /* Allow vertical scrolling while preventing horizontal scroll */
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+.viewer-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #ffffff 0%, #dbe4eb 100%);
+    position: relative;
+}
+
+#bottle-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    cursor: grab;
+}
+
+#bottle-canvas:active {
+    cursor: grabbing;
+}
+
+#loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s;
+}
+
+/* UI CONTROLS - REPOSITIONED TO RIGHT SIDE */
+.ui-dock {
+    position: absolute;
+    top: 25%;
+    right: 30px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    z-index: 20;
+    pointer-events: none;
+    transition: 
+        background-color 800ms cubic-bezier(0.23, 1, 0.32, 1),
+        color 800ms cubic-bezier(0.23, 1, 0.32, 1),
+        transform 0.3s ease;
+    will-change: background-color, color, transform;
+}
+
+.pet-wash-tagline {
+    pointer-events: auto;
+    margin-bottom: 0;
+    transition: 
+        background-color 800ms cubic-bezier(0.23, 1, 0.32, 1),
+        color 800ms cubic-bezier(0.23, 1, 0.32, 1),
+        transform 0.3s ease;
+    will-change: background-color, color, transform;
+}
+
+.tagline-text {
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    text-align: center;
+    white-space: nowrap;
+    transition: 
+        background-color 800ms cubic-bezier(0.23, 1, 0.32, 1),
+        color 800ms cubic-bezier(0.23, 1, 0.32, 1),
+        transform 0.3s ease;
+}
+
+.action-row {
+    display: flex;
+    gap: 15px;
+    pointer-events: auto;
+    justify-content: flex-end;
+}
+
+.btn-3d {
+    border: none;
+    color: white;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+}
+
+.btn-wash {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+    /* Ensure button is always visible on all devices */
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 25 !important;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-3d:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+.btn-3d:active {
+    transform: scale(0.95);
+}
+
+.btn-3d:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.controls-hint {
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: 
+        background-color 800ms cubic-bezier(0.23, 1, 0.32, 1),
+        color 800ms cubic-bezier(0.23, 1, 0.32, 1),
+        transform 0.3s ease;
+    will-change: background-color, color, transform;
+}
+
+/* RESPONSIVE THREE.JS - ENHANCED MOBILE WITH PROPER SCROLLING */
+@media (max-width: 768px) {
+    .three-js-section {
+        margin-top: 80px;
+        touch-action: pan-y;
+        overflow-y: visible;
+    }
+    
+    .ui-dock {
+        top: auto;
+        bottom: 25px;
+        right: 15px;
+        left: 15px;
+        width: calc(100% - 30px);
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .tagline-text {
+        font-size: 15px;
+        padding: 12px 22px;
+        white-space: normal;
+        text-align: center;
+    }
+    
+    .btn-3d {
+        padding: 14px 28px;
+        font-size: 16px;
+        min-width: 160px;
+        justify-content: center;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .controls-hint {
+        font-size: 13px;
+        padding: 8px 18px;
+        background: rgba(0,0,0,0.8);
+    }
+    
+    .pet-wash-tagline {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .three-js-section {
+        margin-top: 75px;
+        touch-action: pan-y;
+        overflow-y: visible;
+    }
+    
+    .ui-dock {
+        bottom: 20px;
+        right: 12px;
+        left: 12px;
+        width: calc(100% - 24px);
+        gap: 18px;
+    }
+    
+    .tagline-text {
+        font-size: 14px;
+        padding: 10px 18px;
+        white-space: normal;
+        text-align: center;
+    }
+    
+    .btn-3d {
+        padding: 12px 24px;
+        font-size: 15px;
+        min-width: 140px;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .controls-hint {
+        font-size: 12px;
+        padding: 6px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .three-js-section {
+        touch-action: pan-y;
+        overflow-y: visible;
+        margin-top: 70px;
+    }
+    
+    .ui-dock {
+        bottom: 18px;
+        right: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        gap: 15px;
+    }
+    
+    .tagline-text {
+        font-size: 13px;
+        padding: 8px 16px;
+        white-space: normal;
+        text-align: center;
+    }
+    
+    .btn-3d {
+        padding: 10px 22px;
+        font-size: 14px;
+        min-width: 130px;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%) !important;
+    }
+    
+    .controls-hint {
+        font-size: 11px;
+        padding: 5px 12px;
+    }
+}
+
+/* MOBILE-FIRST WASH PET BUTTON VISIBILITY FIX */
+@media (max-width: 768px) {
+    .ui-dock {
+        /* Ensure UI dock is always visible */
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 30 !important;
+        position: absolute !important;
+    }
+    
+    .action-row {
+        /* Ensure action row is visible */
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    
+    #wash-btn {
+        /* Force wash button visibility on mobile */
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%) !important;
+        color: white !important;
+        border: none !important;
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4) !important;
+        transform: none !important;
+        position: relative !important;
+        z-index: 35 !important;
+    }
+    
+    #wash-btn:hover {
+        transform: translateY(-2px) scale(1.02) !important;
+        box-shadow: 0 12px 30px rgba(255, 107, 107, 0.6) !important;
+    }
+}
+
+/* EXTRA SMALL SCREENS - MAXIMUM VISIBILITY */
+@media (max-width: 480px) {
+    .ui-dock {
+        bottom: 15px !important;
+        left: 10px !important;
+        right: 10px !important;
+        width: calc(100% - 20px) !important;
+    }
+    
+    #wash-btn {
+        width: 100% !important;
+        max-width: 200px !important;
+        margin: 0 auto !important;
+        font-size: 14px !important;
+        padding: 12px 20px !important;
+        min-height: 44px !important; /* Touch-friendly size */
+    }
+}
+
+/* VERY SMALL SCREENS */
+@media (max-width: 360px) {
+    .ui-dock {
+        bottom: 12px !important;
+        left: 8px !important;
+        right: 8px !important;
+        width: calc(100% - 16px) !important;
+    }
+    
+    #wash-btn {
+        font-size: 13px !important;
+        padding: 10px 18px !important;
+        min-height: 42px !important;
+    }
+}
+
+/* LANDSCAPE MOBILE - ENSURE BUTTON STAYS VISIBLE */
+@media (max-height: 500px) and (orientation: landscape) {
+    .ui-dock {
+        bottom: 8px !important;
+        gap: 10px !important;
+    }
+    
+    #wash-btn {
+        padding: 8px 16px !important;
+        font-size: 12px !important;
+        min-height: 36px !important;
+    }
+    
+    .pet-wash-tagline {
+        margin-bottom: 10px !important;
+    }
+    
+    .tagline-text {
+        font-size: 11px !important;
+        padding: 6px 12px !important;
+    }
+}

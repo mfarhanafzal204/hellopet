@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Hello Pet - Premium Pet Care Brand</title>
+    <meta name="description" content="Get in touch with Hello Pet. Learn about our brand story, meet our team, and connect with us on social media.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="assets/brand logo.PNG">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Contact Hello Pet - Premium Pet Care Brand">
+    <meta property="og:description" content="Get in touch with Hello Pet. Premium pet care products for healthier, happier pets.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hellopet.com/contact">
+    
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome 6 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Global Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top glassmorphism-nav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/brand logo.PNG" alt="Hello Pet Logo" class="navbar-logo-large" onerror="console.log('Navbar logo failed to load'); this.style.display='none';" onload="console.log('Navbar logo loaded successfully');">
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#benefits">Benefits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#how-it-works">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-cta ms-2" href="buy.html">Buy Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <button class="theme-toggle-btn" id="themeToggle" title="Toggle Dark/Light Mode">
+                            <div class="theme-toggle-track">
+                                <div class="theme-toggle-thumb">
+                                    <i class="fas fa-sun sun-icon"></i>
+                                    <i class="fas fa-moon moon-icon"></i>
+                                </div>
+                            </div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Page Content -->
+    <main class="contact-page">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h1 class="page-title">
+                        Get in Touch with Hello Pet
+                    </h1>
+                    <p class="page-subtitle">
+                        We're here to help you and your furry friends. Connect with us anytime!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Brand Story Section -->
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4">
+                    <div class="brand-story-content">
+                        <h2 class="section-title">Our Story</h2>
+                        <p class="lead">
+                            Hello Pet was born from a simple belief: every pet deserves the best care possible.
+                        </p>
+                        <p>
+                            Founded with love and dedication to pet wellness, we understand that your pets are family members who deserve premium care. Our journey began when we noticed the lack of truly gentle, effective pet care products in the market.
+                        </p>
+                        <p>
+                            Today, Hello Pet stands as a trusted brand committed to creating safe, effective, and premium pet care solutions. Our Menthol Fresh shampoo is just the beginning of our mission to revolutionize pet care in Pakistan.
+                        </p>
+                        <div class="brand-values mt-4">
+                            <div class="value-item">
+                                <i class="fas fa-heart text-primary"></i>
+                                <span>Pet-First Approach</span>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-leaf text-success"></i>
+                                <span>Natural Ingredients</span>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-shield-alt text-info"></i>
+                                <span>Safety Guaranteed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="brand-image-container">
+                        <img src="assets/asthetic.jpeg" alt="Hello Pet Brand Aesthetic" class="img-fluid rounded-4 shadow-lg">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Message Section -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10">
+                    <div class="trust-message-card glass-card text-center">
+                        <div class="trust-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>Why Trust Hello Pet?</h3>
+                        <p class="lead">
+                            We're not just another pet product company. We're pet parents ourselves, and we understand the responsibility that comes with caring for your beloved companions.
+                        </p>
+                        <div class="row g-4 mt-4">
+                            <div class="col-md-4">
+                                <div class="trust-point">
+                                    <i class="fas fa-microscope text-primary"></i>
+                                    <h5>Scientifically Tested</h5>
+                                    <p>Every product undergoes rigorous testing for safety and effectiveness.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="trust-point">
+                                    <i class="fas fa-user-md text-success"></i>
+                                    <h5>Vet Approved</h5>
+                                    <p>Recommended by veterinarians across Pakistan for optimal pet health.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="trust-point">
+                                    <i class="fas fa-thumbs-up text-info"></i>
+                                    <h5>Pet Parent Approved</h5>
+                                    <p>Thousands of happy customers trust Hello Pet for their pets' care.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4">
+                    <div class="contact-card glass-card text-center">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h4>WhatsApp</h4>
+                        <p>Get instant support and place orders</p>
+                        <a href="https://wa.me/923236010067?text=Hi Hello Pet! I need assistance" 
+                           class="btn btn-primary" target="_blank">
+                            <i class="fab fa-whatsapp me-2"></i>Chat Now
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-card glass-card text-center">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h4>Instagram</h4>
+                        <p>Follow us for pet care tips and updates</p>
+                        <a href="https://www.instagram.com/hellopetltd" 
+                           class="btn btn-primary" target="_blank">
+                            <i class="fab fa-instagram me-2"></i>Follow Us
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-card glass-card text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4>Founder</h4>
+                        <p>Muhammad Ahmad Nadeem</p>
+                        <a href="https://wa.me/923236010067?text=Hi! I'd like to speak with the founder" 
+                           class="btn btn-primary" target="_blank">
+                            <i class="fas fa-envelope me-2"></i>Connect
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10">
+                    <div class="faq-section">
+                        <h2 class="section-title text-center mb-5">Frequently Asked Questions</h2>
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        Is Hello Pet shampoo safe for all pets?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes! Hello Pet is formulated to be safe for dogs, cats, and other pets. Our gentle formula is specially designed for sensitive skin and has been tested by veterinarians.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        How often should I use Hello Pet shampoo?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        For most pets, once every 2-4 weeks is ideal. However, pets with skin conditions or those who get dirty frequently may benefit from weekly baths. Always consult your vet for personalized advice.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        What makes the menthol formula special?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Our menthol formula provides a cooling, soothing effect that helps relieve itching and irritation. It also leaves a fresh, clean scent while being gentle on your pet's skin.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                        Do you offer delivery across Pakistan?
+                                    </button>
+                                </h2>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes! We deliver to all major cities in Pakistan. Delivery is free for orders in Karachi, Lahore, Islamabad, and other major cities. Cash on delivery is available.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <div class="cta-section">
+                        <h2>Ready to Give Your Pet the Best Care?</h2>
+                        <p class="lead">Join thousands of happy pet parents who trust Hello Pet for their furry friends.</p>
+                        <div class="cta-buttons">
+                            <a href="buy.html" class="btn btn-primary btn-lg me-3">
+                                <i class="fas fa-shopping-cart me-2"></i>Order Now
+                            </a>
+                            <a href="https://wa.me/923236010067?text=Hi! I have questions about Hello Pet products" 
+                               class="btn btn-outline-primary btn-lg" target="_blank">
+                                <i class="fab fa-whatsapp me-2"></i>Ask Questions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-brand">
+                        <img src="assets/brand logo.PNG" alt="Hello Pet Logo" class="footer-logo-large" onerror="console.log('Footer logo failed to load'); this.style.display='none';" onload="console.log('Footer logo loaded successfully');">
+                        <h3 class="footer-brand-name">Hello Pet</h3>
+                        <p class="footer-tagline">Pakistan's 1st Luxury Pet Care Brand</p>
+                        <p class="footer-description">Premium pet care products for healthier, happier pets. Trusted by thousands of pet parents across Pakistan.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-info">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html#benefits">Benefits</a></li>
+                            <li><a href="index.html#how-it-works">How It Works</a></li>
+                            <li><a href="buy.html">Order Now</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="footer-contact">
+                        <h4 class="footer-heading">Connect With Us</h4>
+                        <div class="social-links-large">
+                            <a href="https://www.instagram.com/hellopetltd" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                                <span>Follow on Instagram</span>
+                            </a>
+                            <a href="https://wa.me/923236010067" target="_blank" class="social-link">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>Chat on WhatsApp</span>
+                            </a>
+                        </div>
+                        <div class="footer-contact-info">
+                            <p><i class="fas fa-phone me-2"></i>+92 323 6010067</p>
+                            <p><i class="fas fa-envelope me-2"></i>hello@hellopet.pk</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="footer-copyright">© 2024 Hello Pet. All rights reserved. | Made with ❤️ for Pet Parents</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/923236010067?text=Hi! I want to learn more about Hello Pet" target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Chatbot Toggle -->
+    <div class="chatbot-toggle">
+        <button class="chatbot-btn" onclick="toggleChatbot()">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget" id="chatbotWidget">
+        <div class="chatbot-header">
+            <div class="chatbot-header-content">
+                <div class="chatbot-avatar">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <div class="chatbot-info">
+                    <h5>Hello Pet Assistant</h5>
+                    <div class="chatbot-status">
+                        <div class="status-indicator"></div>
+                        Online & Ready to Help
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-controls">
+                <button class="voice-btn" title="Voice Input">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="speaker-btn" title="Text to Speech">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button onclick="toggleChatbot()" class="btn-close-chat" title="Close Chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chatbot-body">
+            <!-- Messages will be dynamically added here -->
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" placeholder="Type your message or use voice..." id="chatbotInput" maxlength="500">
+            <div class="chatbot-input-controls">
+                <button class="chatbot-voice-btn" id="voiceBtn" title="Voice message">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="chatbot-send-btn" id="sendBtn" title="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div class="voice-recording-indicator" id="recordingIndicator">
+                <div class="recording-dot"></div>
+                <span>Recording...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Permission Modal -->
+    <div class="voice-permission-modal" id="voicePermissionModal">
+        <div class="voice-permission-content">
+            <div class="voice-permission-icon">
+                <i class="fas fa-microphone"></i>
+            </div>
+            <h3>Enable Voice Messages</h3>
+            <p>Hello Pet would like to access your microphone to enable voice messages. This will make chatting easier and more natural.</p>
+            <div class="voice-permission-buttons">
+                <button class="voice-permission-btn primary" id="allowVoiceBtn">
+                    <i class="fas fa-check me-2"></i>Allow
+                </button>
+                <button class="voice-permission-btn secondary" id="denyVoiceBtn">
+                    <i class="fas fa-times me-2"></i>Not Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="js/simple-app.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/theme-manager.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script>
+        // Page initialization without preloader
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Contact page loaded successfully');
+        });
+    </script>
+</body>
+</html>

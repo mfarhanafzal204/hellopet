@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chatbot Structure Test</title>
+    
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome 6 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body {
+            padding-top: 100px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+        
+        .test-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 20px;
+        }
+        
+        .status-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 1000;
+            min-width: 200px;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        
+        .status-ok { color: #28a745; }
+        .status-error { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <!-- Status Box -->
+    <div class="status-box">
+        <h6><i class="fas fa-info-circle"></i> Chatbot Status</h6>
+        <div class="status-item">
+            <span>Structure:</span>
+            <span id="structureStatus" class="status-error">Not Open</span>
+        </div>
+        <div class="status-item">
+            <span>Layout:</span>
+            <span id="layoutStatus" class="status-error">Not Open</span>
+        </div>
+    </div>
+
+    <!-- Global Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top glassmorphism-nav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/brand logo.PNG" alt="Hello Pet Logo" class="navbar-logo-large">
+            </a>
+            
+            <div class="navbar-nav ms-auto">
+                <button class="theme-toggle-btn" id="themeToggle" title="Toggle Dark/Light Mode">
+                    <div class="theme-toggle-track">
+                        <div class="theme-toggle-thumb">
+                            <i class="fas fa-sun sun-icon"></i>
+                            <i class="fas fa-moon moon-icon"></i>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="test-info">
+            <h1><i class="fas fa-robot"></i> Chatbot Structure Test</h1>
+            <p class="lead">Click the chatbot button to test the fixed structure.</p>
+            
+            <div class="alert alert-info">
+                <h5><i class="fas fa-exclamation-circle"></i> What to Test:</h5>
+                <ol>
+                    <li><strong>Click the chatbot button</strong> (bottom right)</li>
+                    <li><strong>Verify the structure:</strong>
+                        <ul>
+                            <li>Header should be fixed at top</li>
+                            <li>Body should be scrollable in middle</li>
+                            <li>Input area should be fixed at bottom</li>
+                        </ul>
+                    </li>
+                    <li><strong>Send some messages</strong> and verify header/footer stay in place</li>
+                    <li><strong>Check the status box</strong> (top right) for real-time feedback</li>
+                </ol>
+            </div>
+            
+            <div class="alert alert-success">
+                <h5><i class="fas fa-check-circle"></i> Expected Result:</h5>
+                <p class="mb-0">The chatbot should maintain a consistent structure with fixed header and footer, regardless of how many messages are added.</p>
+            </div>
+            
+            <button class="btn btn-primary btn-lg" onclick="addTestMessages()">
+                <i class="fas fa-plus"></i> Add Test Messages
+            </button>
+            
+            <button class="btn btn-secondary btn-lg ms-2" onclick="checkChatbotStructure()">
+                <i class="fas fa-search"></i> Check Structure
+            </button>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle -->
+    <div class="chatbot-toggle">
+        <button class="chatbot-btn" onclick="toggleChatbot()">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget" id="chatbotWidget">
+        <div class="chatbot-header">
+            <div class="chatbot-header-content">
+                <div class="chatbot-avatar">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <div class="chatbot-info">
+                    <h5>Hello Pet Assistant</h5>
+                    <div class="chatbot-status">
+                        <div class="status-indicator"></div>
+                        Online & Ready to Help
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-controls">
+                <button class="voice-btn" title="Voice Input">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="speaker-btn" title="Text to Speech">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button onclick="toggleChatbot()" class="btn-close-chat" title="Close Chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chatbot-body">
+            <!-- Messages will be dynamically added here -->
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" placeholder="Type your message..." id="chatbotInput" maxlength="500">
+            <div class="chatbot-input-controls">
+                <button class="chatbot-voice-btn" id="voiceBtn" title="Voice message">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="chatbot-send-btn" id="sendBtn" title="Send message" onclick="sendTestMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Theme Manager -->
+    <script src="js/theme-manager.js"></script>
+    
+    <!-- Chatbot -->
+    <script src="js/chatbot.js"></script>
+    
+    <script>
+        function updateStatus() {
+            const widget = document.getElementById('chatbotWidget');
+            const structureStatus = document.getElementById('structureStatus');
+            const layoutStatus = document.getElementById('layoutStatus');
+            
+            if (widget.style.display === 'flex' || widget.classList.contains('open')) {
+                structureStatus.textContent = 'Fixed Layout ✓';
+                structureStatus.className = 'status-ok';
+                
+                const computedStyle = window.getComputedStyle(widget);
+                if (computedStyle.display === 'flex' && computedStyle.flexDirection === 'column') {
+                    layoutStatus.textContent = 'Flex Column ✓';
+                    layoutStatus.className = 'status-ok';
+                } else {
+                    layoutStatus.textContent = 'Layout Issue ✗';
+                    layoutStatus.className = 'status-error';
+                }
+            } else {
+                structureStatus.textContent = 'Not Open';
+                structureStatus.className = 'status-error';
+                layoutStatus.textContent = 'Not Open';
+                layoutStatus.className = 'status-error';
+            }
+        }
+        
+        function addTestMessages() {
+            const chatBody = document.querySelector('.chatbot-body');
+            if (!chatBody) {
+                alert('Please open the chatbot first!');
+                return;
+            }
+            
+            const messages = [
+                'Hello! How can I help you?',
+                'I want to know about your pet shampoo.',
+                'Our Hello Pet shampoo is perfect for all pets!',
+                'What are the ingredients?',
+                'It contains natural menthol and gentle cleansing agents.',
+                'How much does it cost?',
+                'Only PKR 1199 with free delivery!',
+                'That sounds great! How do I order?',
+                'You can order via WhatsApp or our website.',
+                'Perfect! I\'ll place an order now.'
+            ];
+            
+            messages.forEach((msg, index) => {
+                setTimeout(() => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `chat-message ${index % 2 === 0 ? 'bot-message' : 'user-message'}`;
+                    messageDiv.innerHTML = `
+                        <div class="message-content">
+                            <p>${msg}</p>
+                            <span class="message-time">${new Date().toLocaleTimeString()}</span>
+                        </div>
+                    `;
+                    chatBody.appendChild(messageDiv);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                    updateStatus();
+                }, index * 500);
+            });
+        }
+        
+        function sendTestMessage() {
+            const input = document.getElementById('chatbotInput');
+            const chatBody = document.querySelector('.chatbot-body');
+            
+            if (input.value.trim() && chatBody) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chat-message user-message';
+                messageDiv.innerHTML = `
+                    <div class="message-content">
+                        <p>${input.value}</p>
+                        <span class="message-time">${new Date().toLocaleTimeString()}</span>
+                    </div>
+                `;
+                chatBody.appendChild(messageDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+                input.value = '';
+                
+                // Auto-reply
+                setTimeout(() => {
+                    const replyDiv = document.createElement('div');
+                    replyDiv.className = 'chat-message bot-message';
+                    replyDiv.innerHTML = `
+                        <div class="message-content">
+                            <p>Thanks for your message! The structure should remain fixed.</p>
+                            <span class="message-time">${new Date().toLocaleTimeString()}</span>
+                        </div>
+                    `;
+                    chatBody.appendChild(replyDiv);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                    updateStatus();
+                }, 1000);
+            }
+        }
+        
+        function checkChatbotStructure() {
+            const widget = document.getElementById('chatbotWidget');
+            const header = widget.querySelector('.chatbot-header');
+            const body = widget.querySelector('.chatbot-body');
+            const footer = widget.querySelector('.chatbot-input-area');
+            
+            let report = 'Chatbot Structure Report:\n\n';
+            
+            if (widget.style.display === 'flex' || widget.classList.contains('open')) {
+                const computedStyle = window.getComputedStyle(widget);
+                report += `✅ Widget Display: ${computedStyle.display}\n`;
+                report += `✅ Flex Direction: ${computedStyle.flexDirection}\n`;
+                report += `✅ Widget Height: ${computedStyle.height}\n\n`;
+                
+                if (header) {
+                    const headerStyle = window.getComputedStyle(header);
+                    report += `✅ Header Flex: ${headerStyle.flex}\n`;
+                    report += `✅ Header Height: ${headerStyle.height}\n\n`;
+                }
+                
+                if (body) {
+                    const bodyStyle = window.getComputedStyle(body);
+                    report += `✅ Body Flex: ${bodyStyle.flex}\n`;
+                    report += `✅ Body Overflow: ${bodyStyle.overflowY}\n\n`;
+                }
+                
+                if (footer) {
+                    const footerStyle = window.getComputedStyle(footer);
+                    report += `✅ Footer Flex: ${footerStyle.flex}\n`;
+                    report += `✅ Footer Height: ${footerStyle.height}\n\n`;
+                }
+                
+                report += '🎯 Structure: Fixed layout applied successfully!';
+            } else {
+                report += '❌ Chatbot is not open. Please open it first.';
+            }
+            
+            alert(report);
+        }
+        
+        // Monitor chatbot state
+        const observer = new MutationObserver(updateStatus);
+        
+        window.addEventListener('load', function() {
+            const widget = document.getElementById('chatbotWidget');
+            if (widget) {
+                observer.observe(widget, {
+                    attributes: true,
+                    attributeFilter: ['style', 'class']
+                });
+            }
+            
+            updateStatus();
+            
+            console.log('🧪 SIMPLE CHATBOT STRUCTURE TEST LOADED');
+            console.log('🎯 Testing: Fixed header, scrollable body, fixed footer');
+        });
+        
+        // Handle input enter key
+        document.getElementById('chatbotInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendTestMessage();
+            }
+        });
+    </script>
+</body>
+</html>

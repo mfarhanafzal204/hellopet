@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Areas Fix Test - Hello Pet</title>
+    
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome 6 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .test-highlight {
+            border: 2px dashed #ff6b6b;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        
+        .test-label {
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Test Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top glassmorphism-nav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/brand logo.PNG" alt="Hello Pet Logo" class="navbar-logo-large">
+            </a>
+            
+            <div class="navbar-nav ms-auto">
+                <button class="theme-toggle-btn" id="themeToggle" title="Toggle Dark/Light Mode">
+                    <div class="theme-toggle-track">
+                        <div class="theme-toggle-thumb">
+                            <i class="fas fa-sun sun-icon"></i>
+                            <i class="fas fa-moon moon-icon"></i>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="display-4 mb-3">🔍 White Areas Fix Test</h1>
+                <p class="lead">Testing specific areas that were showing white in dark mode</p>
+                <button class="btn btn-primary" onclick="toggleTheme()">Toggle Theme to Test</button>
+            </div>
+        </div>
+
+        <!-- Test 1: Index.html - Area above footer -->
+        <div class="test-highlight">
+            <div class="test-label">TEST 1: Index.html - Area above footer (Order Now section)</div>
+            <section class="how-it-works-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center mb-5">
+                            <h2 class="section-title">How It Works</h2>
+                            <p class="section-subtitle">Simple 3-step process for perfect results</p>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-12 text-center">
+                            <a href="buy.html" class="btn btn-primary btn-lg">
+                                <i class="fas fa-shopping-cart me-2"></i>Order Now - Only PKR 1199
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Test 2: Buy.html - Trust indicators -->
+        <div class="test-highlight">
+            <div class="test-label">TEST 2: Buy.html - Trust indicators (Free Delivery, Cash on Delivery, etc.)</div>
+            <div class="product-trust-indicators">
+                <div class="trust-grid-product">
+                    <div class="trust-item-product">
+                        <div class="trust-icon-product">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="trust-content-product">
+                            <h6>Free Delivery</h6>
+                            <p>Major cities</p>
+                        </div>
+                    </div>
+                    <div class="trust-item-product">
+                        <div class="trust-icon-product">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="trust-content-product">
+                            <h6>Cash on Delivery</h6>
+                            <p>Pay when received</p>
+                        </div>
+                    </div>
+                    <div class="trust-item-product">
+                        <div class="trust-icon-product">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <div class="trust-content-product">
+                            <h6>Easy Returns</h6>
+                            <p>7-day return policy</p>
+                        </div>
+                    </div>
+                    <div class="trust-item-product">
+                        <div class="trust-icon-product">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="trust-content-product">
+                            <h6>Quality Assured</h6>
+                            <p>Vet approved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test 3: Contact.html - CTA section -->
+        <div class="test-highlight">
+            <div class="test-label">TEST 3: Contact.html - CTA section (Ready to Give Your Pet the Best Care?)</div>
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <div class="cta-section">
+                        <h2>Ready to Give Your Pet the Best Care?</h2>
+                        <p class="lead">Join thousands of happy pet parents who trust Hello Pet for their furry friends.</p>
+                        <div class="cta-buttons">
+                            <a href="buy.html" class="btn btn-primary btn-lg me-3">
+                                <i class="fas fa-shopping-cart me-2"></i>Order Now
+                            </a>
+                            <a href="#" class="btn btn-outline-primary btn-lg">
+                                <i class="fab fa-whatsapp me-2"></i>Ask Questions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test 4: Bootstrap containers and rows -->
+        <div class="test-highlight">
+            <div class="test-label">TEST 4: Bootstrap containers and rows (should have no white background)</div>
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col-12 text-center">
+                        <p>This container and row should transition smoothly with the theme</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Results -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="glass-card p-4">
+                    <h3>Test Instructions:</h3>
+                    <ol>
+                        <li><strong>Click "Toggle Theme to Test"</strong> above</li>
+                        <li><strong>Watch each highlighted section</strong> - they should transition smoothly</li>
+                        <li><strong>No white areas</strong> should remain in dark mode</li>
+                        <li><strong>All text and backgrounds</strong> should change color smoothly</li>
+                    </ol>
+                    
+                    <h4 class="mt-4">Expected Results:</h4>
+                    <ul>
+                        <li>✅ <strong>Test 1:</strong> Order Now section transitions smoothly</li>
+                        <li>✅ <strong>Test 2:</strong> Trust indicators have proper dark backgrounds</li>
+                        <li>✅ <strong>Test 3:</strong> CTA section text and background transition</li>
+                        <li>✅ <strong>Test 4:</strong> Bootstrap containers have no white areas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Theme Manager -->
+    <script src="js/theme-manager.js"></script>
+    
+    <script>
+        function toggleTheme() {
+            if (window.themeManager) {
+                window.themeManager.toggleTheme();
+            }
+        }
+        
+        // Auto-test every 4 seconds
+        let autoTest = false;
+        
+        function startAutoTest() {
+            if (!autoTest) {
+                autoTest = true;
+                setInterval(() => {
+                    if (window.themeManager) {
+                        window.themeManager.toggleTheme();
+                    }
+                }, 4000);
+                console.log('🔄 Auto-testing started - theme will toggle every 4 seconds');
+            }
+        }
+        
+        // Initialize
+        setTimeout(() => {
+            console.log('🧪 White Areas Fix Test Ready!');
+            console.log('💡 Click "Toggle Theme to Test" or run startAutoTest() in console');
+            console.log('🎯 Watch for smooth transitions in all highlighted areas');
+        }, 500);
+    </script>
+</body>
+</html>

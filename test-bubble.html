@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Think Bubble Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background: #f0f0f0;
+        }
+        .test-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        button {
+            background: #3BA7C9;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-size: 1rem;
+        }
+        button:hover {
+            background: #2e8ba8;
+        }
+        .status {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-panel">
+        <h1>🧪 Think Bubble Test Page</h1>
+        <p>This page tests the think bubble functionality in isolation.</p>
+        
+        <div class="status" id="status">
+            Status: Loading...
+        </div>
+        
+        <h3>Test Commands:</h3>
+        <button onclick="testThinkBubble()">Show Think Bubble</button>
+        <button onclick="forceShowBubble()">Force Show Bubble</button>
+        <button onclick="resetChatbot()">Reset Chatbot</button>
+        <button onclick="checkStatus()">Check Status</button>
+        
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Wait 3 seconds after page load - bubble should appear automatically</li>
+            <li>Or click "Show Think Bubble" to test manually</li>
+            <li>Click the bubble to open chatbot</li>
+            <li>Use "Reset Chatbot" to test again</li>
+        </ol>
+        
+        <p><strong>Expected:</strong> A speech bubble should appear near the bottom-left with a helpful message.</p>
+    </div>
+
+    <!-- Chatbot Toggle -->
+    <div style="position: fixed; bottom: 20px; left: 20px; z-index: 1000;">
+        <button style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #3BA7C9 0%, #2e8ba8 100%); border: none; color: white; font-size: 1.5rem; cursor: pointer;" onclick="toggleChatbot()">
+            💬
+        </button>
+    </div>
+
+    <!-- Minimal Chatbot Widget -->
+    <div id="chatbotWidget" style="display: none; position: fixed; bottom: 90px; left: 20px; width: 300px; height: 400px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 999;">
+        <div style="background: linear-gradient(135deg, #3BA7C9 0%, #2e8ba8 100%); color: white; padding: 1rem; border-radius: 15px 15px 0 0;">
+            <h4 style="margin: 0;">Hello Pet Assistant</h4>
+        </div>
+        <div style="padding: 1rem;">
+            <p>Think bubble test successful! 🎉</p>
+        </div>
+    </div>
+
+    <!-- Load Chatbot Script -->
+    <script src="js/chatbot.js"></script>
+    
+    <script>
+        function checkStatus() {
+            const status = document.getElementById('status');
+            if (window.chatbot) {
+                status.innerHTML = `
+                    Status: ✅ Chatbot loaded<br>
+                    User Interacted: ${window.chatbot.userInteracted}<br>
+                    Think Bubble Shown: ${window.chatbot.thinkBubbleShown}<br>
+                    Chatbot Open: ${window.chatbot.isOpen}
+                `;
+            } else {
+                status.innerHTML = 'Status: ❌ Chatbot not loaded';
+            }
+        }
+        
+        function toggleChatbot() {
+            const widget = document.getElementById('chatbotWidget');
+            if (widget.style.display === 'none') {
+                widget.style.display = 'block';
+                if (window.chatbot) {
+                    window.chatbot.isOpen = true;
+                    window.chatbot.userInteracted = true;
+                }
+            } else {
+                widget.style.display = 'none';
+                if (window.chatbot) {
+                    window.chatbot.isOpen = false;
+                }
+            }
+        }
+        
+        // Auto-check status every 2 seconds
+        setInterval(checkStatus, 2000);
+        
+        // Initial status check
+        setTimeout(checkStatus, 1000);
+        
+        console.log('🧪 Think Bubble Test Page Loaded');
+        console.log('Commands: testThinkBubble(), forceShowBubble(), resetChatbot()');
+    </script>
+</body>
+</html>
